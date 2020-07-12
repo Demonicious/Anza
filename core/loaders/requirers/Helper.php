@@ -20,10 +20,10 @@
 
 namespace XyLex;
 
-require CORE_PATH . 'components/libraries/Language.php';
+use \XyLex\Load;
 
-class Libraries {
-    public static function Language($a, $b) {
-        return new \XyLex\Libraries\Language($a, $b);
+class Helper {
+    public static function Load($name) {
+        return Load::Helper($name);
     }
 }

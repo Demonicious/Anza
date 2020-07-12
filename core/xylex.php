@@ -20,8 +20,8 @@
 
 namespace XyLex;
 
-use \XyLex\Components\Load as Load;
-use \XyLex\Config\Load as LoadConfig;
+use \XyLex\Load;
+use \XyLex\Config;
 use \XyLex\Config\Autoload;
 
 class App {    
@@ -32,6 +32,11 @@ class App {
 
     public function LoadHelpers() {
         foreach(Autoload::Helpers as $Helper) { Load::Helper($Helper); }
+        $default = array(
+            'core'
+        );
+        foreach($default as $Helper) { Load::Helper($Helper, true); }
+
         return true;
     }
 
@@ -52,7 +57,7 @@ class App {
     }
 
     public function InitializeRouter() {
-        $routes = LoadConfig::New('Routes');
+        $routes = Config::Load('Routes');
         require(CORE_PATH . 'third_party/fast-route/bootstrap.php');
 
         $this->router = \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) use ($routes) {

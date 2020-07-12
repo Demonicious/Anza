@@ -18,22 +18,13 @@
                                                                         
 */
 
-define('NAME',        'XyLex');
-define('VERSION',     '1.0.0');
-define('MIN_PHP',     '5.6');
+namespace XyLex;
 
-if(phpversion() < MIN_PHP)
-    die(NAME . " " . VERSION . " is designed to work with PHP " . MIN_PHP . " and up.");
+use \XyLex\Load;
 
-
-// Application Environment
-define('ENV',      'development');
-
-// Defining Basic Path Constants.
-define('FC_PATH',   __DIR__ . DIRECTORY_SEPARATOR);
-
-require(FC_PATH . 'app/config/paths.php');
-require(FC_PATH . 'core/init.php');
-
-$App = new \XyLex\App();
-$App->Bootstrap();
+class Libraries {
+    public static function Language($a, $b) {
+        Load::Library('Language', true);
+        return new \XyLex\Libraries\Language($a, $b);
+    }
+}

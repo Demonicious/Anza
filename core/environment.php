@@ -18,12 +18,10 @@
                                                                         
 */
 
-namespace XyLex\Config;
-
-class Load {
-    public static function New($config_name) {
-        require CFG_PATH . $config_name . '.php';
-        $class = '\XyLex\Config\\' . $config_name;
-        return new $class();
-    }
+if(ENV == 'development') {
+    error_reporting(-1);
+    ini_set('display_errors', '1');
+} else {
+    ini_set('display_errors', '0');
+    error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
 }

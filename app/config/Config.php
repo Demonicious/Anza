@@ -20,13 +20,26 @@
 
 namespace XyLex\Config;
 
-class App {
+class Config {
     public function __construct() {
-        $this->name         = 'XyLex Project';
-        $this->description  = 'A Blank XyLex Project';
-        $this->author       = array(
-            'name'  => 'XL Scripts Core Team',
-            'url'   => 'https://xscripts.com'
+        $this->urls = array(
+            'base_url'  => 'http://localhost/xylex/'
         );
+
+        /* Used for the Session Driver */
+        $this->session = array(
+            'prefix' => 'xylex_sess_',  // Session Key Prefix
+            'expire' => 0,              // Expiry in Seconds, 0 = Browser Close
+            'path'   => APP_PATH . 'writable' . DIRECTORY_SEPARATOR . 'sessions'
+        );
+
+        /* Used for the Caching Driver */
+        $this->cache   = array(
+            'prefix' => 'xylex_cache_',
+            'mode'   => 'file',
+            'path'   => APP_PATH . 'writable' . DIRECTORY_SEPARATOR . 'cache'
+        );
+
+
     }
 }

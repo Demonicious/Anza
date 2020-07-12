@@ -18,7 +18,7 @@
                                                                         
 */
 
-namespace XyLex\Components;
+namespace XyLex;
 
 class Load {
     public static function Controller($name) {
@@ -31,34 +31,46 @@ class Load {
     public static function Model($name) {
         $path = MODELS . $name . '.php';
         if(file_exists($path)) {
-            require $path;
+            require_once $path;
         }
     }
 
-    public static function Helper($name) {
+    public static function Helper($name, $core = false) {
         $path = HELPERS . $name . '.helper.php';
-        if(file_exists($path)) {
-            require $path;
+        if(!$core) {
+            if(file_exists($path)) {
+                require_once $path;
+            } else if(file_exists($path = CORE_PATH . 'components/helpers/' . $name . '.helper.php')) {
+                require_once $path;
+            }
+        } else if(file_exists($path = CORE_PATH . 'components/helpers/' . $name . '.helper.php')) {
+            require_once $path;
         }
     }
     
-    public static function Library($name) {
+    public static function Library($name, $core = false) {
         $path = LIBRARIES . $name . '.php';
-        if(file_exists($path)) {
-            require $path;
+        if(!$core) {
+            if(file_exists($path)) {
+                require_once $path;
+            } else if(file_exists($path = CORE_PATH . 'components/libraries/' . $name . '.php')) {
+                require_once $path;
+            }
+        } else if(file_exists($path = CORE_PATH . 'components/libraries/' . $name . '.php')) {
+            require_once $path;
         }
     }
         
     public static function Config($config_name) {
-        $path = CFG_PATH . $name . '.php';
+        $path = CFG_PATH . $config_name . '.php';
         if(file_exists($path)) {
-            require $path;
+            require_once $path;
         }
     }
 
     public static function File($path) {
         if(file_exists($path)) {
-            require $path;
+            require_once $path;
         }
     }
 }

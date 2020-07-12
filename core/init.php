@@ -32,7 +32,7 @@ define('CONTROLLERS', \XyLex\Config\Paths::Controllers);
 define('MODELS',      \XyLex\Config\Paths::Models);
 define('VIEWS',       \XyLex\Config\Paths::Views);
 
-require(CORE_PATH . 'components/Load.php');
+require(CORE_PATH . 'environment.php');
 require(CFG_PATH  . 'Autoload.php');
 
 require(CORE_PATH . 'components/InputReciever.php');
@@ -41,11 +41,14 @@ require(CORE_PATH . 'components/IncomingRequest.php');
 require(CORE_PATH . 'classes/Controller.php');
 require(CORE_PATH . 'classes/Model.php');
 require(CORE_PATH . 'classes/View.php');
-require(CORE_PATH . 'classes/ConfigLoader.php');
 
-require(CORE_PATH . 'devx/drivers.php');
-require(CORE_PATH . 'devx/libraries.php');
-require(CORE_PATH . 'devx/services.php');
+require(CORE_PATH . 'loaders/Load.php');
+require(CORE_PATH . 'loaders/requirers/Helper.php');
+require(CORE_PATH . 'loaders/requirers/Model.php');
+require(CORE_PATH . 'loaders/instantiators/Config.php');
+require(CORE_PATH . 'loaders/instantiators/Drivers.php');
+require(CORE_PATH . 'loaders/instantiators/Libraries.php');
+require(CORE_PATH . 'loaders/instantiators/Services.php');
 
 require(CFG_PATH . 'Constants.php');
 
