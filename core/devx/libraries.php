@@ -20,6 +20,10 @@
 
 namespace XyLex;
 
+require CORE_PATH . 'components/libraries/Language.php';
+
 class Libraries {
-    
+    public static function Language($a, $b) {
+        return new \XyLex\Libraries\Language($a, $b);
+    }
 }
