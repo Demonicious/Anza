@@ -35,8 +35,8 @@ define('VIEWS',       \XyLex\Config\Paths::Views);
 require(CORE_PATH . 'environment.php');
 require(CFG_PATH  . 'Autoload.php');
 
-require(CORE_PATH . 'components/InputReciever.php');
-require(CORE_PATH . 'components/IncomingRequest.php');
+require(CORE_PATH . 'components/utils/InputReciever.php');
+require(CORE_PATH . 'components/utils/IncomingRequest.php');
 
 require(CORE_PATH . 'classes/Controller.php');
 require(CORE_PATH . 'classes/Model.php');

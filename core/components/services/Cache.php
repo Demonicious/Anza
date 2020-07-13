@@ -61,4 +61,8 @@ class Cache {
 
         return null;
     }
+
+    public function set($cache_var, $val = null, $expire = 86400) {
+        return $this->save($cache_var, $val, $expire);
+    }
 }

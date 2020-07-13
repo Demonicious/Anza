@@ -13,8 +13,22 @@ if (!function_exists('getallheaders'))  {
     }
 }
 
-function printArray($arr) {
+function pretty_r($arr) {
     echo '<pre>';
     print_r($arr);
     echo '</pre>';
+}
+
+function pretty_dump($var) {
+    echo '<pre>';
+    var_dump($var);
+    echo '</pre>';
+}
+
+function esc_html($str) {
+    return htmlentities($str);
+} 
+
+function decode_html($str) {
+    return html_entity_decode($str);
 }

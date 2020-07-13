@@ -32,4 +32,10 @@ class Services {
         Load::Service('Session');
         return new \XyLex\Services\Session();
     }
+    
+    public static function Database($group = null) {
+        Load::Service('Database');
+        Load::Component('utils/DatabaseResult');
+        return new \XyLex\Services\Database($group);
+    }
 }

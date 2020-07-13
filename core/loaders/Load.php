@@ -81,6 +81,13 @@ class Load {
             require_once $path;
         }
     }
+        
+    public static function Component($component) {
+        $path = CORE_PATH . 'components/' . $component . '.php';
+        if(file_exists($path)) {
+            require_once $path;
+        }
+    }
 
     public static function File($path) {
         if(file_exists($path)) {

@@ -58,7 +58,7 @@ class App {
 
     public function InitializeRouter() {
         $routes = Config::Load('Routes');
-        require(CORE_PATH . 'third_party/fast-route/bootstrap.php');
+        Load::File(CORE_PATH . 'third_party/nikic-fast-route/bootstrap.php');
         $this->router = \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) use ($routes) {
             foreach($routes->routes as $new_route) {
                 $r->addRoute($new_route[0], $new_route[1], $new_route[2]);
@@ -84,11 +84,11 @@ class App {
         $this->route_info = $this->router->dispatch($this->method, $this->uri);
         switch ($this->route_info[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
-                echo 'Not Found';
+                \XyLex\View::Render('not_found.php', array(), true);
                 break;
             case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
                 $allowedMethods = $this->route_info[1];
-                echo 'Not Allowed';
+                \XyLex\View::Render('not_allowed.php', array(), true);
                 break;
             case \FastRoute\Dispatcher::FOUND:
                 $handler = $this->route_info[1];
@@ -101,6 +101,7 @@ class App {
                 Load::Controller($controller);
                 $controller = $this->controller_namespace . '\\' . $controller;
                 $controller = new $controller();
+
                 $controller->$method($vars);
                 break;
         }

@@ -18,17 +18,24 @@
                                                                         
 */
 
-namespace XyLex;
+namespace XyLex\Services;
 
-use \XyLex\Load;
+use XyLex\Config;
+use XyLex\Drivers\Database as DatabaseDrivers;
 
-class Libraries {
-    public static function Language($a, $b) {
-        Load::Library('Language', true);
-        return new \XyLex\Libraries\Language($a, $b);
+class Database {
+    private $driver;
+
+    public function __construct($group = null) {
+        $cfg = Config::Load('Database');
+
+        if($cfg->driver == 'db_default') {
+            $credentials = $cfg->groups[$group ? $group : $cfg->default_group];
+            $this->driver = DatabaseDrivers::DB_Default($credentials);
+        }
     }
 
-    public static function Load($name) {
-        Load::Library($name);
+    public function table($t) {
+        return $this->driver->builder->table($t);
     }
 }

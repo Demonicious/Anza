@@ -22,7 +22,7 @@ namespace XyLex;
 
 class View {
     private static function CorrectName($view_name) {
-        $final = substr($view_name, -3);
+        $final = substr($view_name, -4);
         if($final !== '.php')
             $view_name .= '.php';
 
