@@ -29,7 +29,7 @@ class View {
         return $view_name;
     }
 
-    public function Include($view_name, $core = false) {
+    public static function Include($view_name, $core = false) {
         return self::Render($view_name, $GLOBALS['xylex-data'], $core);
     }
 

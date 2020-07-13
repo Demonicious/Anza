@@ -27,4 +27,8 @@ class Libraries {
         Load::Library('Language', true);
         return new \XyLex\Libraries\Language($a, $b);
     }
+
+    public static function Load($name) {
+        return Load::Library($name);
+    }
 }

@@ -6,8 +6,6 @@
     <title><?php echo $title; ?></title>
 </head>
 
-<?php \XyLex\View::Include('other') ?>
-
 <body>
     <p>We hope you enjoyed your stay :)</p>
 </body>
