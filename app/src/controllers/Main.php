@@ -2,6 +2,6 @@
 
 class Main extends Controller {
     public function index() {
-        printArray($this);
+        \XyLex\View::Render('main');
     }
 }

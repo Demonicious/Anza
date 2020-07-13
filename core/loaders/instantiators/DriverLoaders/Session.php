@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /* 
     XyLex - 1
@@ -18,10 +18,13 @@
                                                                         
 */
 
-namespace XyLex\Config;
+namespace XyLex\Drivers;
 
-class Config {
-    public function __construct() {
-        $this->base_url = 'http://localhost/xylex/';
+use \XyLex\Load;
+
+class Session {
+    public static function Vanilla($prefix, $expiry) {
+        Load::Driver('Session/Vanilla');
+        return new \XyLex\Drivers\Session\Vanilla($prefix, $expiry);
     }
 }

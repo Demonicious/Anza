@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /* 
     XyLex - 1
@@ -18,10 +18,13 @@
                                                                         
 */
 
-namespace XyLex\Config;
+namespace XyLex\Drivers;
 
-class Config {
-    public function __construct() {
-        $this->base_url = 'http://localhost/xylex/';
+use \XyLex\Load;
+
+class Cache {
+    public static function File($prefix, $save_path) {
+        Load::Driver('Cache/File');
+        return new \XyLex\Drivers\Cache\File($prefix, $save_path);
     }
 }

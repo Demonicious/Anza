@@ -59,10 +59,9 @@ class App {
     public function InitializeRouter() {
         $routes = Config::Load('Routes');
         require(CORE_PATH . 'third_party/fast-route/bootstrap.php');
-
         $this->router = \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) use ($routes) {
-            foreach($routes->routes as $route) {
-                $r->addRoute($route[0], $route[1], $route[2]);
+            foreach($routes->routes as $new_route) {
+                $r->addRoute($new_route[0], $new_route[1], $new_route[2]);
             }
         });
 

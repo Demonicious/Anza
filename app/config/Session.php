@@ -20,8 +20,10 @@
 
 namespace XyLex\Config;
 
-class Config {
+class Session {
     public function __construct() {
-        $this->base_url = 'http://localhost/xylex/';
+        $this->prefix = 'xylex_sess_';
+        $this->driver = 'vanilla';
+        $this->expiry = 256000;
     }
 }

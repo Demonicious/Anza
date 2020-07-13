@@ -20,6 +20,16 @@
 
 namespace XyLex;
 
+use \XyLex\Load;
+
 class Services {
-    
+    public static function Cache() {
+        Load::Service('Cache');
+        return new \XyLex\Services\Cache();
+    }
+
+    public static function Session() {
+        Load::Service('Session');
+        return new \XyLex\Services\Session();
+    }
 }

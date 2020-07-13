@@ -68,6 +68,20 @@ class Load {
         }
     }
 
+    public static function Driver($driver_path) {
+        $path = CORE_PATH . 'components/drivers/' . $driver_path . '.driver.php';
+        if(file_exists($path)) {
+            require_once $path;
+        }
+    }
+    
+    public static function Service($service) {
+        $path = CORE_PATH . 'components/services/' . $service . '.php';
+        if(file_exists($path)) {
+            require_once $path;
+        }
+    }
+
     public static function File($path) {
         if(file_exists($path)) {
             require_once $path;

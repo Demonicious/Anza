@@ -19,7 +19,7 @@
 */
 
 define('NAME',        'XyLex');
-define('VERSION',     '1.0.0');
+define('VERSION',     '1.0');
 define('MIN_PHP',     '5.6');
 
 if(phpversion() < MIN_PHP)

@@ -1,0 +1,4 @@
+vendor
+
+app/writable/cache
+app/writable/sessions

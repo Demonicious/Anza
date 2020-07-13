@@ -20,8 +20,10 @@
 
 namespace XyLex\Config;
 
-class Config {
+class Cache {
     public function __construct() {
-        $this->base_url = 'http://localhost/xylex/';
+        $this->prefix = 'xylex_cache_';
+        $this->driver = 'file';
+        $this->path   = APP_PATH . 'writable' . DIRECTORY_SEPARATOR . 'cache';
     }
 }
