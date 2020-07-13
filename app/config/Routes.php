@@ -28,7 +28,8 @@ class Routes {
         $this->allowed_methods        = array( 'GET', 'POST', 'PUT', 'PATCH', 'DELETE' );
 
         $this->routes = array(
-            ['GET', '/', 'Main::index']
+            ['GET', '/', 'Main::index'],
+            ['GET', '/test', 'Main::test']
         );
     }
 }
