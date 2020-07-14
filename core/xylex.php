@@ -61,9 +61,12 @@ class App {
 
     public function InitializeRouter() {
         $routes = Config::Load('Routes');
-        Load::File(CORE_PATH . 'third_party/nikic-fast-route/bootstrap.php');
+
         $this->default_controller = $routes->default_controller;
         $this->default_method     = $routes->default_method;
+        $this->spread_arguments   = $routes->spread_arguments;
+
+        Load::File(CORE_PATH . 'third_party/nikic-fast-route/bootstrap.php');
         $this->router = \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) use ($routes) {
             $r->addRoute('GET', '/' , $routes->default_controller . '::' . $routes->default_method);
 
@@ -77,6 +80,7 @@ class App {
                 $r->addRoute(['GET','POST','PUT','PATCH','DELETE'], '/{controller}/{method}/{vars:.+}', 'auto');
             }
         });
+        
 
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->uri    = $_SERVER['REQUEST_URI'];
@@ -135,7 +139,10 @@ class App {
         if(class_exists($controller)) {
             $controller = new $controller();
             if(method_exists($controller, $method) || $method[0] == '_') {
-                $controller->$method($vars);
+                if($this->spread_arguments)
+                    call_user_func_array(array($controller, $method), $vars);
+                else 
+                    $controller->$method($vars);
             } else 
                 $this->Show404();
         } else
@@ -151,7 +158,10 @@ class App {
         $controller = $this->controller_namespace . '\\' . $controller;
         $controller = new $controller();
             
-        $controller->$method($this->vars);
+        if($this->spread_arguments)
+            call_user_func_array(array($controller, $method), $this->vars);
+        else 
+            $controller->$method($this->vars);
     }
 
     public function DispatchRoute() {
