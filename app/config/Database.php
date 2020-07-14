@@ -33,6 +33,14 @@ class Database {
                 'database'  => 'xylex',
 
                 'charset'   => 'utf8'
+            ),
+            'XyLex'   => array(
+                'host'      => 'localhost',
+                'username'  => 'root',
+                'password'  => '',
+                'database'  => 'imager',
+
+                'charset'   => 'utf8'
             )
         );
     }

@@ -27,8 +27,16 @@ class Routes {
         $this->controller_namespace   = '\XyLex\Controllers';
         $this->allowed_methods        = array( 'GET', 'POST', 'PUT', 'PATCH', 'DELETE' );
 
+        $this->default_controller     = 'Main';
+        $this->default_method         = 'index';
+
+        $this->auto_routing           = FALSE; // Set this to true for Automatic Routing. Auto-routing differs from Pre-defined Routing. Check Docs for More
+
+        $this->override_404           = null;
+        $this->override_403           = null;
+
         $this->routes = array(
-            ['GET', '/', 'Main::index']
+            // [ 'GET', '/user/{id}', 'User::FindUser' ]
         );
     }
 }

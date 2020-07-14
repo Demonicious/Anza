@@ -24,7 +24,10 @@ use \XyLex\Load;
 use \XyLex\Config;
 use \XyLex\Config\Autoload;
 
-class App {    
+class App {
+    private $override_404 = null;
+    private $override_403 = null;
+
     public function LoadConfigs() {
         foreach(Autoload::Config as $Config)  { Load::Config($Config); }
         return true;
@@ -59,9 +62,20 @@ class App {
     public function InitializeRouter() {
         $routes = Config::Load('Routes');
         Load::File(CORE_PATH . 'third_party/nikic-fast-route/bootstrap.php');
+
+        $this->default_controller = $routes->default_controller;
+        $this->default_method     = $routes->default_method;
         $this->router = \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) use ($routes) {
+            $r->addRoute('GET', '/' , $routes->default_controller . '::' . $routes->default_method);
+
             foreach($routes->routes as $new_route) {
                 $r->addRoute($new_route[0], $new_route[1], $new_route[2]);
+            }
+
+            if($routes->auto_routing) {
+                $r->addRoute(['GET','POST','PUT','PATCH','DELETE'], '/{controller}', 'auto');
+                $r->addRoute(['GET','POST','PUT','PATCH','DELETE'], '/{controller}/{method}', 'auto');
+                $r->addRoute(['GET','POST','PUT','PATCH','DELETE'], '/{controller}/{method}/{vars:.+}', 'auto');
             }
         });
 
@@ -72,11 +86,16 @@ class App {
             $this->uri = substr($this->uri, (strlen(rtrim($routes->is_subfolder, '/'))));
         }
 
-        // Strip query string (?foo=bar) and decode URI
+        if(isset($routes->override_404))
+            $this->override_404 = $routes->override_404;
+
+        if(isset($routes->override_403))
+            $this->override_403 = $routes->override_403;
+
         if (false !== $pos = strpos($this->uri, '?')) {
             $this->uri = substr($this->uri, 0, $pos);
         }
-        $this->uri = rawurldecode($this->uri);
+        $this->uri = rtrim(rawurldecode($this->uri), '/');
         $this->controller_namespace = $routes->controller_namespace;
     }
 
@@ -84,25 +103,53 @@ class App {
         $this->route_info = $this->router->dispatch($this->method, $this->uri);
         switch ($this->route_info[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
-                \XyLex\View::Render('not_found.php', array(), true);
+                if($this->override_404) {
+                    $split = explode('::', $this->override_404);
+                    $controller = $split[0];
+                    $method     = $split[1];
+
+                    Load::Controller($controller);
+                    $controller = $this->controller_namespace . '\\' . $controller;
+                    $controller = new $controller();
+                    $controller->$method();
+                } else
+                    \XyLex\View::Render('not_found.php', array(), true);
                 break;
             case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
                 $allowedMethods = $this->route_info[1];
-                \XyLex\View::Render('not_allowed.php', array(), true);
+                if($this->override_403) {
+                    $split = explode('::', $this->override_403);
+                    $controller = $split[0];
+                    $method     = $split[1];
+
+                    Load::Controller($controller);
+                    $controller = $this->controller_namespace . '\\' . $controller;
+                    $controller = new $controller();
+                    $controller->$method();
+                } else
+                    \XyLex\View::Render('not_allowed.php', array(), true);
                 break;
             case \FastRoute\Dispatcher::FOUND:
-                $handler = $this->route_info[1];
-                $vars = $this->route_info[2];
-                
-                $split = explode('::', $handler);
-                $controller = $split[0];
-                $method     = $split[1];
+                $handler    = $this->route_info[1];
+                $vars       = $this->route_info[2];
+                $controller = null;
+                $method     = null;
 
+                if($handler == 'auto') {
+                    $controller = ucfirst($vars['controller']);
+                    $method     = isset($vars['method']) && $vars['method'] != '' ? $vars['method'] : $this->default_method;
+                    $vars       = isset($vars['vars']) && $vars['vars'] != '' ? explode('/', $vars['vars']) : null;
+                } else {
+                    $split = explode('::', $handler);
+                    $controller = $split[0];
+                    $method     = $split[1];
+                }
                 Load::Controller($controller);
                 $controller = $this->controller_namespace . '\\' . $controller;
                 $controller = new $controller();
-
+                    
                 $controller->$method($vars);
+
                 break;
         }
     }
