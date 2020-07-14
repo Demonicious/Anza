@@ -42,7 +42,6 @@ require(CORE_PATH . 'classes/Controller.php');
 require(CORE_PATH . 'classes/Model.php');
 require(CORE_PATH . 'classes/View.php');
 
-require(CORE_PATH . 'loaders/Load.php');
 require(CORE_PATH . 'loaders/requirers/Helper.php');
 require(CORE_PATH . 'loaders/requirers/Model.php');
 require(CORE_PATH . 'loaders/instantiators/Config.php');

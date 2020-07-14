@@ -62,7 +62,6 @@ class App {
     public function InitializeRouter() {
         $routes = Config::Load('Routes');
         Load::File(CORE_PATH . 'third_party/nikic-fast-route/bootstrap.php');
-
         $this->default_controller = $routes->default_controller;
         $this->default_method     = $routes->default_method;
         $this->router = \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) use ($routes) {
@@ -86,16 +85,14 @@ class App {
             $this->uri = substr($this->uri, (strlen(rtrim($routes->is_subfolder, '/'))));
         }
 
-        if(isset($routes->override_404))
-            $this->override_404 = $routes->override_404;
-
-        if(isset($routes->override_403))
-            $this->override_403 = $routes->override_403;
+        $this->override_404 = $routes->override_404;
+        $this->override_403 = $routes->override_403;
 
         if (false !== $pos = strpos($this->uri, '?')) {
             $this->uri = substr($this->uri, 0, $pos);
         }
-        $this->uri = rtrim(rawurldecode($this->uri), '/');
+        $this->uri = str_replace('\\', '/', rawurldecode($this->uri));
+        if($this->uri != '/') $this->uri = rtrim($this->uri, '/');
         $this->controller_namespace = $routes->controller_namespace;
     }
 
@@ -149,8 +146,19 @@ class App {
                 $controller = new $controller();
                     
                 $controller->$method($vars);
-
                 break;
+        }
+
+        if(ENV == 'development') {
+            $time_taken = microtime(true) - $GLOBALS['start'];
+            \XyLex\View::Render('_dev_script', array(
+                'time_taken' => $time_taken,
+                'route_info' => json_encode(array(
+                    'status' => $this->route_info[0] ? 'Found' : 'Error',
+                    'handler' => $this->route_info[1],
+                    'variables' => $this->route_info[2]
+                ))
+            ), true);
         }
     }
 

@@ -20,13 +20,13 @@
 
 define('NAME',        'XyLex');
 define('VERSION',     '1.0');
-define('MIN_PHP',     '5.6');
+define('MIN_PHP',     '7.4');
 
 if(phpversion() < MIN_PHP)
     die(NAME . " " . VERSION . " is designed to work with PHP " . MIN_PHP . " and up.");
 
 
-// Application Environment
+// Application Environment - 'production' | 'development' -- Development Mode Enables Developer Statistics and Information accessible in the Browser's Console.
 define('ENV',      'development');
 
 // Defining Basic Path Constants.
