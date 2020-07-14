@@ -23,19 +23,26 @@ namespace XyLex\Config;
 
 class Routes {
     public function __construct() {
-        $this->is_subfolder           = '/xylex';               // If you're hosting the project in a subfolder, Enter the full path to the subfolder (Without Trailing Slash)
-        $this->translate_uri_dash     = FALSE;
+        $this->is_subfolder           = '/xylex'; // If you're hosting the project in a subfolder, Enter the full path to the subfolder (Without Trailing Slash)
 
-        $this->controller_namespace   = '\XyLex\Controllers';
-        $this->default_controller     = 'Main';
-        $this->default_method         = 'index';
-        $this->auto_routing           = FALSE;
+        $this->default_controller     = 'Main';  // This controller will serve as the homepage for the User.
+        $this->default_method         = 'index'; // This method will automatically be called when no method is specified. Also used in Auto-routing
 
-        $this->spread_arguments       = FALSE; 
+        $this->auto_routing           = FALSE; // Set this to true for Automatic File Based routing - This does not have any performance impacts.
 
-        $this->override_404           = null;
-        $this->override_403           = null;
+        $this->spread_arguments       = FALSE; // By default an array of params is passed to the function, setting this to true will "spread" the parameters instead. Keeping this False is recommended.
 
-        $this->routes = array();
+        $this->override_404           = null; // Enter the Controller::Method that should be used as the 404 Page instead of the default one.
+        $this->override_403           = null; // Enter the Controller::Method that should be used as the 403 Page instead of the default one.
+
+        /* Array of Routes - Each route is an array that contains the Method, location and handler for the route */
+        $this->routes = array(
+            // [ 'GET', '/user/{id}', 'Users::Profile' ]
+            
+            /* The first element of the Route array can be another array containing multiple allowed methods */
+            // [  ['GET', 'POST'], '/user/{id}', 'Users::Profile'  ]
+        
+            // XyLex 1.0 relies on FastRoute by Nikic. See https://github.com/nikic/FastRoute for help with creating Routes.
+        );
     }
 }

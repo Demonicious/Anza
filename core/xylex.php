@@ -27,6 +27,7 @@ use \XyLex\Config\Autoload;
 class App {
     private $override_404 = null;
     private $override_403 = null;
+    private $controller_namespace = '\XyLex\Controllers';
 
     public function LoadConfigs() {
         foreach(Autoload::Config as $Config)  { Load::Config($Config); }
@@ -97,14 +98,13 @@ class App {
         }
         $this->uri = str_replace('\\', '/', rawurldecode($this->uri));
         if($this->uri != '/') $this->uri = rtrim($this->uri, '/');
-        $this->controller_namespace = $routes->controller_namespace;
     }
 
     public function Show404() {
         if($this->override_404) {
             $split = explode('::', $this->override_404);
             $controller = $split[0];
-            $method     = $split[1];
+            $method     = isset($split[1]) ? $split[1] : $this->default_method;
 
             Load::Controller($controller);
             $controller = $this->controller_namespace . '\\' . $controller;
@@ -119,7 +119,7 @@ class App {
         if($this->override_403) {
             $split = explode('::', $this->override_403);
             $controller = $split[0];
-            $method     = $split[1];
+            $method     = isset($split[1]) ? $split[1] : null;
 
             Load::Controller($controller);
             $controller = $this->controller_namespace . '\\' . $controller;
@@ -152,7 +152,7 @@ class App {
     public function DispatchDefinedRoute() {
         $split      = explode('::', $this->handler);
         $controller = $split[0];
-        $method     = $split[1];         
+        $method     = isset($split[1]) ? $split[1] : $this->default_method;         
 
         Load::Controller($controller);
         $controller = $this->controller_namespace . '\\' . $controller;

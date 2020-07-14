@@ -18,22 +18,16 @@
                                                                         
 */
 
-namespace XyLex;
+namespace XyLex\Libraries;
 
-use \XyLex\Load;
-
-class Libraries {
-    public static function Language($a, $b) {
-        Load::Library('Language', true);
-        return new \XyLex\Libraries\Language($a, $b);
-    }
-
-    public static function Upload($cfg) {
-        Load::Library('Upload', true);
-        return new \XyLex\Libraries\Upload($cfg);
-    }
-
-    public static function Load($name) {
-        Load::Library($name);
+class Upload {
+    private $allowed_mimes;
+    private $path;
+    
+    public function __construct($config) {
+        $this->filename      = isset($config['filename']) ? $config['filename'] : null;
+        $this->max_size      = isset($config['max_size']) ? $config['max_size'] : null;
+        $this->allowed_mimes = isset($config['allowed_mimes']) ? $config['allowed_mimes'] : '*';
+        $this->path          = $config['path'];
     }
 }

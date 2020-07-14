@@ -18,22 +18,10 @@
                                                                         
 */
 
-namespace XyLex;
+namespace XyLex\Components;
 
-use \XyLex\Load;
-
-class Libraries {
-    public static function Language($a, $b) {
-        Load::Library('Language', true);
-        return new \XyLex\Libraries\Language($a, $b);
-    }
-
-    public static function Upload($cfg) {
-        Load::Library('Upload', true);
-        return new \XyLex\Libraries\Upload($cfg);
-    }
-
-    public static function Load($name) {
-        Load::Library($name);
-    }
+class Instance {
+    public $session;
+    public $cache;
+    public $database;
 }
