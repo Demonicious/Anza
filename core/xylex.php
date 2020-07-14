@@ -96,69 +96,83 @@ class App {
         $this->controller_namespace = $routes->controller_namespace;
     }
 
+    public function Show404() {
+        if($this->override_404) {
+            $split = explode('::', $this->override_404);
+            $controller = $split[0];
+            $method     = $split[1];
+
+            Load::Controller($controller);
+            $controller = $this->controller_namespace . '\\' . $controller;
+            $controller = new $controller();
+            $controller->$method();
+        } else
+            \XyLex\View::Render('not_found.php', array(), true);
+    }
+    
+    public function Show403() {
+        $allowedMethods = $this->route_info[1];
+        if($this->override_403) {
+            $split = explode('::', $this->override_403);
+            $controller = $split[0];
+            $method     = $split[1];
+
+            Load::Controller($controller);
+            $controller = $this->controller_namespace . '\\' . $controller;
+            $controller = new $controller();
+            $controller->$method();
+        } else
+            \XyLex\View::Render('not_allowed.php', array(), true);
+    }
+
+    public function DispatchAutoRoute() {
+        $controller = ucfirst($this->vars['controller']);
+        $method     = isset($this->vars['method']) && $this->vars['method'] != '' ? $this->vars['method'] : $this->default_method;
+        $vars       = isset($this->vars['vars']) && $this->vars['vars'] != '' ? explode('/', $this->vars['vars']) : null;
+
+        Load::Controller($controller);
+        $controller = $this->controller_namespace . '\\' . $controller;
+        if(class_exists($controller)) {
+            $controller = new $controller();
+            if(method_exists($controller, $method) || $method[0] == '_') {
+                $controller->$method($vars);
+            } else 
+                $this->Show404();
+        } else
+            $this->Show404();
+    }
+
+    public function DispatchDefinedRoute() {
+        $split      = explode('::', $this->handler);
+        $controller = $split[0];
+        $method     = $split[1];         
+
+        Load::Controller($controller);
+        $controller = $this->controller_namespace . '\\' . $controller;
+        $controller = new $controller();
+            
+        $controller->$method($this->vars);
+    }
+
     public function DispatchRoute() {
         $this->route_info = $this->router->dispatch($this->method, $this->uri);
+
         switch ($this->route_info[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
-                if($this->override_404) {
-                    $split = explode('::', $this->override_404);
-                    $controller = $split[0];
-                    $method     = $split[1];
-
-                    Load::Controller($controller);
-                    $controller = $this->controller_namespace . '\\' . $controller;
-                    $controller = new $controller();
-                    $controller->$method();
-                } else
-                    \XyLex\View::Render('not_found.php', array(), true);
+                $this->Show404();
                 break;
             case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-                $allowedMethods = $this->route_info[1];
-                if($this->override_403) {
-                    $split = explode('::', $this->override_403);
-                    $controller = $split[0];
-                    $method     = $split[1];
-
-                    Load::Controller($controller);
-                    $controller = $this->controller_namespace . '\\' . $controller;
-                    $controller = new $controller();
-                    $controller->$method();
-                } else
-                    \XyLex\View::Render('not_allowed.php', array(), true);
+                $this->Show403();
                 break;
             case \FastRoute\Dispatcher::FOUND:
-                $handler    = $this->route_info[1];
-                $vars       = $this->route_info[2];
-                $controller = null;
-                $method     = null;
+                $this->handler    = $this->route_info[1];
+                $this->vars       = $this->route_info[2];
 
-                if($handler == 'auto') {
-                    $controller = ucfirst($vars['controller']);
-                    $method     = isset($vars['method']) && $vars['method'] != '' ? $vars['method'] : $this->default_method;
-                    $vars       = isset($vars['vars']) && $vars['vars'] != '' ? explode('/', $vars['vars']) : null;
-                } else {
-                    $split = explode('::', $handler);
-                    $controller = $split[0];
-                    $method     = $split[1];
-                }
-                Load::Controller($controller);
-                $controller = $this->controller_namespace . '\\' . $controller;
-                $controller = new $controller();
-                    
-                $controller->$method($vars);
+                if($this->handler == 'auto') 
+                    $this->DispatchAutoRoute();
+                else 
+                    $this->DispatchDefinedRoute();
                 break;
-        }
-
-        if(ENV == 'development') {
-            $time_taken = microtime(true) - $GLOBALS['start'];
-            \XyLex\View::Render('_dev_script', array(
-                'time_taken' => $time_taken,
-                'route_info' => json_encode(array(
-                    'status' => $this->route_info[0] ? 'Found' : 'Error',
-                    'handler' => $this->route_info[1],
-                    'variables' => $this->route_info[2]
-                ))
-            ), true);
         }
     }
 
@@ -171,6 +185,20 @@ class App {
     
         $this->InitializeRouter();
         $this->DispatchRoute();
+
+        if(ENV == 'development') {
+            if(ENV == 'development') {
+                $time_taken = microtime(true) - $GLOBALS['start'];
+                \XyLex\View::Render('_dev_script', array(
+                    'time_taken' => $time_taken,
+                    'route_info' => json_encode(array(
+                        'status' => $this->route_info[0] ? 'Found' : 'Error',
+                        'handler' => isset($this->route_info[1]) ? $this->route_info[1] : 'undefined',
+                        'variables' => isset($this->vars) ? $this->vars : 'undefined'
+                    ))
+                ), true);
+            }
+        }
 
         return true;
     }

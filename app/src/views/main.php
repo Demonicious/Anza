@@ -114,7 +114,10 @@
                     <span>If you don't see any errors, It means that the Framework has loaded all of it's Core Modules properly.</span>
                     <br>
                     <br>  
-                </p>
+					<?php if(ENV == 'development') { ?>
+						<p>The Framework is currently running in Development Mode.<br>Open up your Browser Dev Tools' Console for Debug Information.</p>
+					<?php } ?>
+				</p>
             </p>
 			<br>
 			<p>Useful Links:</p>

@@ -25,8 +25,6 @@ class Routes {
         $this->translate_uri_dash     = FALSE;
 
         $this->controller_namespace   = '\XyLex\Controllers';
-        $this->allowed_methods        = array( 'GET', 'POST', 'PUT', 'PATCH', 'DELETE' );
-
         $this->default_controller     = 'Main';
         $this->default_method         = 'index';
 
@@ -36,7 +34,7 @@ class Routes {
         $this->override_403           = null;
 
         $this->routes = array(
-            // [ 'GET', '/user/{id}', 'User::FindUser' ]
+            // [ 'GET', '/user/{id}', 'User::Profile' ]
         );
     }
 }
