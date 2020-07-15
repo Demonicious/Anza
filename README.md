@@ -1,2 +1,2 @@
 ### Anza
-Lightning Fast MVC Framework
+Lightweight & Extremely Fast MVC Framework
