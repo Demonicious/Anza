@@ -1,7 +1,7 @@
 <?php 
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,12 +18,12 @@
                                                                         
 */
 
-namespace XyLex\Config;
+namespace Anza\Config;
 
 class App {
     public function __construct() {
-        $this->name         = 'XyLex Project';
-        $this->description  = 'A Blank XyLex Project';
+        $this->name         = 'Anza Project';
+        $this->description  = 'A Blank Anza Project';
         $this->author       = array(
             'name'  => 'XL Scripts Core Team',
             'url'   => 'https://xscripts.com'

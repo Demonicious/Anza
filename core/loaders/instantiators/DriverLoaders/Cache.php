@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,13 +18,13 @@
                                                                         
 */
 
-namespace XyLex\Drivers;
+namespace Anza\Drivers;
 
-use \XyLex\Load;
+use \Anza\Load;
 
 class Cache {
     public static function File($prefix, $save_path) {
         Load::Driver('Cache/File');
-        return new \XyLex\Drivers\Cache\File($prefix, $save_path);
+        return new \Anza\Drivers\Cache\File($prefix, $save_path);
     }
 }

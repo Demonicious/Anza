@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,24 +18,24 @@
                                                                         
 */
 
-namespace XyLex;
+namespace Anza;
 
-use \XyLex\Load;
+use \Anza\Load;
 
 class Services {
     public static function Cache() {
         Load::Service('Cache');
-        return new \XyLex\Services\Cache();
+        return new \Anza\Services\Cache();
     }
 
     public static function Session() {
         Load::Service('Session');
-        return new \XyLex\Services\Session();
+        return new \Anza\Services\Session();
     }
     
     public static function Database($group = null) {
         Load::Service('Database');
         Load::Component('utils/DatabaseResult');
-        return new \XyLex\Services\Database($group);
+        return new \Anza\Services\Database($group);
     }
 }

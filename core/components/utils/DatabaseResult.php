@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,7 +18,7 @@
                                                                         
 */
 
-namespace XyLex\Components;
+namespace Anza\Components;
 
 class DatabaseResult {
     private $i = -1;

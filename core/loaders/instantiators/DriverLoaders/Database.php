@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,13 +18,13 @@
                                                                         
 */
 
-namespace XyLex\Drivers;
+namespace Anza\Drivers;
 
-use \XyLex\Load;
+use \Anza\Load;
 
 class Database {
     public static function DB_Default($credentials) {
         Load::Driver('Database/DB_Default');
-        return new \XyLex\Drivers\Database\DB_Default($credentials);
+        return new \Anza\Drivers\Database\DB_Default($credentials);
     }
 }

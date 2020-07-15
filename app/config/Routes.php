@@ -1,7 +1,7 @@
 <?php 
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -17,13 +17,13 @@
     \/   \/\_____/ \____/  \____/\_| \_| \___/ \_|      \_/  \____/ 
                                                                         
 */
-namespace XyLex\Config;
+namespace Anza\Config;
 
-// See https://xlscripts.github.io/xylex/routing for Configuration Instructions - Default settings are the *Recommended* Settings.
+// See https://xlscripts.github.io/Anza/routing for Configuration Instructions - Default settings are the *Recommended* Settings.
 
 class Routes {
     public function __construct() {
-        $this->is_subfolder           = '/xylex'; // If you're hosting the project in a subfolder, Enter the full path to the subfolder (Without Trailing Slash)
+        $this->is_subfolder           = '/anza'; // If you're hosting the project in a subfolder, Enter the full path to the subfolder (Without Trailing Slash)
 
         $this->default_controller     = 'Main';  // This controller will serve as the homepage for the User.
         $this->default_method         = 'index'; // This method will automatically be called when no method is specified. Also used in Auto-routing
@@ -42,7 +42,7 @@ class Routes {
             /* The first element of the Route array can be another array containing multiple allowed methods */
             // [  ['GET', 'POST'], '/user/{id}', 'Users::Profile'  ]
         
-            // XyLex 1.0 relies on FastRoute by Nikic. See https://github.com/nikic/FastRoute for help with creating Routes.
+            // Anza 1.0 relies on FastRoute by Nikic. See https://github.com/nikic/FastRoute for help with creating Routes.
         );
     }
 }

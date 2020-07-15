@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,7 +18,7 @@
                                                                         
 */
 
-define('NAME',        'XyLex');
+define('NAME',        'Anza');
 define('VERSION',     '1.0');
 define('MIN_PHP',     '7.1');
 
@@ -35,5 +35,5 @@ define('FC_PATH',   __DIR__ . DIRECTORY_SEPARATOR);
 require(FC_PATH . 'app/config/paths.php');
 require(FC_PATH . 'core/init.php');
 
-$App = new \XyLex\App();
+$App = new \Anza\App();
 $App->Bootstrap();

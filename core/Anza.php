@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,16 +18,16 @@
                                                                         
 */
 
-namespace XyLex;
+namespace Anza;
 
-use \XyLex\Load;
-use \XyLex\Config;
-use \XyLex\Config\Autoload;
+use \Anza\Load;
+use \Anza\Config;
+use \Anza\Config\Autoload;
 
 class App {
     private $override_404 = null;
     private $override_403 = null;
-    private $controller_namespace = '\XyLex\Controllers';
+    private $controller_namespace = '\Anza\Controllers';
 
     public function LoadConfigs() {
         foreach(Autoload::Config as $Config)  { Load::Config($Config); }
@@ -111,7 +111,7 @@ class App {
             $controller = new $controller();
             $controller->$method();
         } else
-            \XyLex\View::Render('not_found.php', array(), true);
+            \Anza\View::Render('not_found.php', array(), true);
     }
     
     public function Show403() {
@@ -126,7 +126,7 @@ class App {
             $controller = new $controller();
             $controller->$method();
         } else
-            \XyLex\View::Render('not_allowed.php', array(), true);
+            \Anza\View::Render('not_allowed.php', array(), true);
     }
 
     public function DispatchAutoRoute() {
@@ -199,7 +199,7 @@ class App {
         if(ENV == 'development') {
             if(ENV == 'development') {
                 $time_taken = microtime(true) - $GLOBALS['start'];
-                \XyLex\View::Render('_dev_script', array(
+                \Anza\View::Render('_dev_script', array(
                     'time_taken' => $time_taken,
                     'route_info' => json_encode(array(
                         'status' => $this->route_info[0] ? 'Found' : 'Error',

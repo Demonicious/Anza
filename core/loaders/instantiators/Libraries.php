@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,19 +18,19 @@
                                                                         
 */
 
-namespace XyLex;
+namespace Anza;
 
-use \XyLex\Load;
+use \Anza\Load;
 
 class Libraries {
     public static function Language($a, $b) {
         Load::Library('Language', true);
-        return new \XyLex\Libraries\Language($a, $b);
+        return new \Anza\Libraries\Language($a, $b);
     }
 
     public static function Upload($cfg) {
         Load::Library('Upload', true);
-        return new \XyLex\Libraries\Upload($cfg);
+        return new \Anza\Libraries\Upload($cfg);
     }
 
     public static function Load($name) {

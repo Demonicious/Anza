@@ -1,7 +1,9 @@
-<?php namespace XyLex\Controllers;
+<?php namespace Anza\Controllers;
 
 class Main extends Controller {
     public function index($params) {
-        \XyLex\View::Render('main');
+        $cache = \Anza\Services::Cache();
+
+        \Anza\View::Render('main');
     }
 }

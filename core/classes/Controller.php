@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,7 +18,7 @@
                                                                         
 */
 
-namespace XyLex\Controllers;
+namespace Anza\Controllers;
 
 class Controller {
     protected $request;
@@ -26,7 +26,7 @@ class Controller {
     protected $input;
     
     public function __construct() {
-        $this->request = new \XyLex\Components\IncomingRequest;
-        $this->input = new \XyLex\Components\InputReciever();
+        $this->request = new \Anza\Components\IncomingRequest;
+        $this->input = new \Anza\Components\InputReciever();
     }
 }

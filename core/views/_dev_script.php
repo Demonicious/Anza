@@ -1,5 +1,5 @@
 <?php $log = array_slice($GLOBALS['load_log'], 3) ?>
-<script type="text/javascript" id="xylex-dev-log">
+<script type="text/javascript" id="Anza-dev-log">
     console.group('<?php echo NAME ?> Development Information & Log Script');
     console.log("%c<?php echo NAME . ' ' . VERSION ?> - Development Mode", "color: rgb(34, 215, 232); font-family: sans-serif; font-size: 4.5em; font-weight: bolder; text-shadow: #000 1px 1px;");
     console.log('This script is only enabled in the Development Environment of the Framework.');

@@ -123,7 +123,7 @@
 			<p>Useful Links:</p>
 			<ul class="list">
 				<li><a target="_blank" href="https://xlscripts.github.io">Framework Userguide</a></li>
-				<li><a target="_blank" href="https://github.com/xlscripts/xylex">GitHub</a></li>
+				<li><a target="_blank" href="https://github.com/xlscripts/Anza">GitHub</a></li>
 				<li><a target="_blank" href="https://xlscripts.com">XL Scripts Marketplace</a></li>
 			</ul>
 			<br>

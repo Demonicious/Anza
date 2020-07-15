@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -20,7 +20,7 @@
 
 /* DEVELOPMENT MODE LOADER */
 
-namespace XyLex;
+namespace Anza;
 
 $GLOBALS['load_log'] = array();
 

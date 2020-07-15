@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,13 +18,13 @@
                                                                         
 */
 
-namespace XyLex\Drivers;
+namespace Anza\Drivers;
 
-use \XyLex\Load;
+use \Anza\Load;
 
 class Session {
     public static function Vanilla($prefix, $expiry) {
         Load::Driver('Session/Vanilla');
-        return new \XyLex\Drivers\Session\Vanilla($prefix, $expiry);
+        return new \Anza\Drivers\Session\Vanilla($prefix, $expiry);
     }
 }

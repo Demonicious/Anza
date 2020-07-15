@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,10 +18,10 @@
                                                                         
 */
 
-namespace XyLex\Services;
+namespace Anza\Services;
 
-use XyLex\Config;
-use XyLex\Drivers\Database as DatabaseDrivers;
+use Anza\Config;
+use Anza\Drivers\Database as DatabaseDrivers;
 
 class Database {
     private $driver;

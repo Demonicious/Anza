@@ -1,7 +1,7 @@
 <?php 
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,7 +18,7 @@
                                                                         
 */
 
-namespace XyLex\Config;
+namespace Anza\Config;
 
 class Database {
     public function __construct() {
@@ -30,11 +30,11 @@ class Database {
                 'host'      => 'localhost',
                 'username'  => 'root',
                 'password'  => '',
-                'database'  => 'xylex',
+                'database'  => 'Anza',
 
                 'charset'   => 'utf8'
             ),
-            'XyLex'   => array(
+            'Anza'   => array(
                 'host'      => 'localhost',
                 'username'  => 'root',
                 'password'  => '',

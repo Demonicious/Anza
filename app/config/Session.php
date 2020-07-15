@@ -1,7 +1,7 @@
 <?php 
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,11 +18,11 @@
                                                                         
 */
 
-namespace XyLex\Config;
+namespace Anza\Config;
 
 class Session {
     public function __construct() {
-        $this->prefix = 'xylex_sess_';
+        $this->prefix = 'Anza_sess_';
         $this->driver = 'vanilla';
         $this->expiry = 256000;
     }

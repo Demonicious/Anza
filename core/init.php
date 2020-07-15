@@ -1,7 +1,7 @@
 <?php 
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,19 +18,19 @@
                                                                         
 */
 
-namespace XyLex;
+namespace Anza;
 
-define('ROOT_PATH', \XyLex\Config\Paths::Root);
-define('CORE_PATH', \XyLex\Config\Paths::Core);
-define('APP_PATH',  \XyLex\Config\Paths::App);
-define('SRC_PATH',  \XyLex\Config\Paths::Src);
-define('CFG_PATH',  \XyLex\Config\Paths::Config);
+define('ROOT_PATH', \Anza\Config\Paths::Root);
+define('CORE_PATH', \Anza\Config\Paths::Core);
+define('APP_PATH',  \Anza\Config\Paths::App);
+define('SRC_PATH',  \Anza\Config\Paths::Src);
+define('CFG_PATH',  \Anza\Config\Paths::Config);
 
-define('LIBRARIES',   \XyLex\Config\Paths::Libraries);
-define('HELPERS',     \XyLex\Config\Paths::Helpers);
-define('CONTROLLERS', \XyLex\Config\Paths::Controllers);
-define('MODELS',      \XyLex\Config\Paths::Models);
-define('VIEWS',       \XyLex\Config\Paths::Views);
+define('LIBRARIES',   \Anza\Config\Paths::Libraries);
+define('HELPERS',     \Anza\Config\Paths::Helpers);
+define('CONTROLLERS', \Anza\Config\Paths::Controllers);
+define('MODELS',      \Anza\Config\Paths::Models);
+define('VIEWS',       \Anza\Config\Paths::Views);
 
 require(CORE_PATH . 'environment.php');
 require(CFG_PATH  . 'Autoload.php');
@@ -51,4 +51,4 @@ require(CORE_PATH . 'loaders/instantiators/Services.php');
 
 require(CFG_PATH . 'Constants.php');
 
-require(CORE_PATH . 'xylex.php');
+require(CORE_PATH . 'Anza.php');

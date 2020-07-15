@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,14 +18,14 @@
                                                                         
 */
 
-namespace XyLex;
+namespace Anza;
 
-use \XyLex\Load;
+use \Anza\Load;
 
 class Config {
     public static function Load($config_name) {
         Load::Config($config_name);
-        $class = '\XyLex\Config\\' . $config_name;
+        $class = '\Anza\Config\\' . $config_name;
         return new $class();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,9 +18,9 @@
                                                                         
 */
 
-namespace XyLex\Drivers\Database;
+namespace Anza\Drivers\Database;
 
-use \XyLex\Load;
+use \Anza\Load;
 
 class DB_Default {
     private $host;
@@ -56,7 +56,7 @@ class DB_Default {
 
                 $id     = $connection->lastInsertId();
                 $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-                return new \XyLex\Components\DatabaseResult($statement->rowCount(), $result, $id, $error);
+                return new \Anza\Components\DatabaseResult($statement->rowCount(), $result, $id, $error);
             }
         });
     }

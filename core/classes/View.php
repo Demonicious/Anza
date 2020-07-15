@@ -1,7 +1,7 @@
 <?php
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,7 +18,7 @@
                                                                         
 */
 
-namespace XyLex;
+namespace Anza;
 
 class View {
     private static function CorrectName($view_name) {
@@ -30,11 +30,11 @@ class View {
     }
 
     public static function Include($view_name, $core = false) {
-        return self::Render($view_name, $GLOBALS['xylex-data'], $core);
+        return self::Render($view_name, $GLOBALS['Anza-data'], $core);
     }
 
     public static function Render($view_name, $data = array(), $core = false) {
-        $GLOBALS['xylex-data'] = $data;
+        $GLOBALS['Anza-data'] = $data;
 
         foreach($data as $variable => $value) {
             ${$variable} = $value;

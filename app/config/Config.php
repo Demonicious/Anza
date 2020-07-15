@@ -1,7 +1,7 @@
 <?php 
 
 /* 
-    XyLex - 1
+    Anza - 1
     Version: 1.0.0
     Author: XL Scripts Core Team
     url: https://xlscripts.com
@@ -18,10 +18,10 @@
                                                                         
 */
 
-namespace XyLex\Config;
+namespace Anza\Config;
 
 class Config {
     public function __construct() {
-        $this->base_url = 'http://localhost/xylex/';
+        $this->base_url = 'http://localhost/Anza/';
     }
 }
