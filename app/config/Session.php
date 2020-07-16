@@ -22,7 +22,7 @@ namespace Anza\Config;
 
 class Session {
     public function __construct() {
-        $this->prefix = 'Anza_sess_';
+        $this->prefix = 'anza_sess_';
         $this->driver = 'vanilla';
         $this->expiry = 256000;
     }

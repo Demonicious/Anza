@@ -22,6 +22,6 @@ namespace Anza\Config;
 
 class Config {
     public function __construct() {
-        $this->base_url = 'http://localhost/Anza/';
+        $this->base_url = 'http://localhost/anza/';
     }
 }

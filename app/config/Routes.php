@@ -28,7 +28,7 @@ class Routes {
         $this->default_controller     = 'Main';  // This controller will serve as the homepage for the User.
         $this->default_method         = 'index'; // This method will automatically be called when no method is specified. Also used in Auto-routing
 
-        $this->auto_routing           = FALSE; // Set this to true for Automatic File Based routing - This does not have any performance impacts.
+        $this->auto_routing           = TRUE; // Set this to true for Automatic File Based routing - This does not have any performance impacts.
 
         $this->spread_arguments       = FALSE; // By default an array of params is passed to the function, setting this to true will "spread" the parameters instead. Keeping this False is recommended.
 

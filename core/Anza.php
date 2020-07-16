@@ -69,16 +69,16 @@ class App {
 
         Load::File(CORE_PATH . 'third_party/nikic-fast-route/bootstrap.php');
         $this->router = \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) use ($routes) {
-            $r->addRoute('GET', '/' , $routes->default_controller . '::' . $routes->default_method);
+            $r->addRoute(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'], '/' , $routes->default_controller . '::' . $routes->default_method);
 
             foreach($routes->routes as $new_route) {
                 $r->addRoute($new_route[0], $new_route[1], $new_route[2]);
             }
 
             if($routes->auto_routing) {
-                $r->addRoute(['GET','POST','PUT','PATCH','DELETE'], '/{controller}', 'auto');
-                $r->addRoute(['GET','POST','PUT','PATCH','DELETE'], '/{controller}/{method}', 'auto');
-                $r->addRoute(['GET','POST','PUT','PATCH','DELETE'], '/{controller}/{method}/{vars:.+}', 'auto');
+                $r->addRoute(['GET','POST','PUT','PATCH','DELETE', 'HEAD'], '/{controller}', 'auto');
+                $r->addRoute(['GET','POST','PUT','PATCH','DELETE', 'HEAD'], '/{controller}/{method}', 'auto');
+                $r->addRoute(['GET','POST','PUT','PATCH','DELETE', 'HEAD'], '/{controller}/{method}/{vars:.+}', 'auto');
             }
         });
         

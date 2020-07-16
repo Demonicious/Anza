@@ -43,7 +43,7 @@ require(CORE_PATH . 'classes/Model.php');
 require(CORE_PATH . 'classes/View.php');
 
 require(CORE_PATH . 'loaders/requirers/Helper.php');
-require(CORE_PATH . 'loaders/requirers/Model.php');
+require(CORE_PATH . 'loaders/instantiators/Model.php');
 require(CORE_PATH . 'loaders/instantiators/Config.php');
 require(CORE_PATH . 'loaders/instantiators/Drivers.php');
 require(CORE_PATH . 'loaders/instantiators/Libraries.php');

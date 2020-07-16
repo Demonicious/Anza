@@ -22,7 +22,7 @@ namespace Anza\Config;
 
 class Cache {
     public function __construct() {
-        $this->prefix = 'Anza_cache_';
+        $this->prefix = 'anza_cache_';
         $this->driver = 'file';
         $this->path   = APP_PATH . 'writable' . DIRECTORY_SEPARATOR . 'cache';
     }

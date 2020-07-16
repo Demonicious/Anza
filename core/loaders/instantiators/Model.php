@@ -23,7 +23,9 @@ namespace Anza;
 use \Anza\Load;
 
 class Model {
-    public static function Load($name) {
-        return Load::Model($name);
+    public static function Load($name, $args = array()) {
+        Load::Model($name);
+        $name = '\\Anza\\Models\\' . $name;
+        return new $name(...$args);
     }
 }

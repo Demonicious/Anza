@@ -30,7 +30,7 @@ class Database {
                 'host'      => 'localhost',
                 'username'  => 'root',
                 'password'  => '',
-                'database'  => 'Anza',
+                'database'  => 'imager',
 
                 'charset'   => 'utf8'
             ),

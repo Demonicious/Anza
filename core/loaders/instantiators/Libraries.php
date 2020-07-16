@@ -35,5 +35,7 @@ class Libraries {
 
     public static function Load($name) {
         Load::Library($name);
+        $name = '\\Anza\\Libraries\\' . $name;
+        return new $name(...$args);
     }
 }

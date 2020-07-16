@@ -24,6 +24,6 @@ class Autoload {
     const Config    = array();
     const Helpers   = array();
     const Models    = array();
-    const Libraries = array('S3_Library');
+    const Libraries = array();
     const Classes   = array();
 }
